@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox alignment="CENTER" prefWidth="440.0" spacing="14.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.deepcave.audw.controllers.DownloadProgressController">
+    <padding>
+        <Insets bottom="24.0" left="24.0" right="24.0" top="24.0" />
+    </padding>
+    <children>
+        <Label fx:id="episodeLabel" maxWidth="392.0" text="Preparazione download..." wrapText="true" />
+        <ProgressBar fx:id="progressBar" maxHeight="22.0" maxWidth="Infinity" minHeight="22.0" prefHeight="22.0" progress="0.0" />
+        <Label fx:id="progressLabel" text="" />
+        <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#onCancel" text="Annulla">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+    </children>
+</VBox>

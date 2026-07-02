@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox alignment="TOP_LEFT" prefWidth="380.0" spacing="16.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.deepcave.audw.controllers.EpisodesController">
+    <padding>
+        <Insets bottom="24.0" left="24.0" right="24.0" top="24.0" />
+    </padding>
+    <children>
+        <Label style="-fx-font-weight: bold;" text="Modalità di selezione:" />
+        <HBox spacing="20.0">
+            <children>
+                <RadioButton fx:id="singleRadio" onAction="#onModeChange" selected="true" text="Singolo episodio">
+                    <toggleGroup>
+                        <ToggleGroup fx:id="modeGroup" />
+                    </toggleGroup>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+                </RadioButton>
+                <RadioButton fx:id="rangeRadio" onAction="#onModeChange" text="Range di episodi" toggleGroup="$modeGroup">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></RadioButton>
+            </children>
+        </HBox>
+
+        <HBox fx:id="singlePane" alignment="CENTER_LEFT" spacing="12.0">
+            <children>
+                <Label text="Episodio:" />
+                <Spinner fx:id="singleSpinner" editable="true" prefWidth="90.0">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Spinner>
+            </children>
+        </HBox>
+
+        <HBox fx:id="rangePane" alignment="CENTER_LEFT" managed="false" spacing="12.0" visible="false">
+            <children>
+                <Label text="Da:" />
+                <Spinner fx:id="fromSpinner" editable="true" prefWidth="90.0" />
+                <Label text="A:" />
+                <Spinner fx:id="toSpinner" editable="true" prefWidth="90.0" />
+            </children>
+        </HBox>
+
+        <HBox alignment="CENTER_RIGHT" spacing="12.0">
+            <children>
+                <Button defaultButton="true" onAction="#onDownload" text="Scarica">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
+                <Button cancelButton="true" onAction="#onCancel" text="Annulla">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
+            </children>
+        </HBox>
+    </children>
+</VBox>
