@@ -3,6 +3,7 @@ package com.deepcave.audw.controllers;
 import com.deepcave.audw.AppSettings;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import javafx.stage.DirectoryChooser;
@@ -13,6 +14,7 @@ public class SettingsController {
 
     @FXML CheckBox divideChbx;
     @FXML TextField dwTxtField;
+    @FXML TextField txt_url;
 
     public void setStage(Stage stage) {
         this.stage = stage;
@@ -21,9 +23,12 @@ public class SettingsController {
     @FXML
     public void initialize() {
         String savedDir = AppSettings.getDownloadDir();
+        String downloadUrl = AppSettings.getDownloadUrl();
+
         if (savedDir != null) {
             dwTxtField.setText(savedDir);
         }
+        txt_url.setText(downloadUrl);
         divideChbx.setSelected(AppSettings.isDivided());
     }
 
@@ -46,6 +51,18 @@ public class SettingsController {
             AppSettings.setDownloadDir(selected.getAbsolutePath());
             dwTxtField.setText(selected.getAbsolutePath());
         }
+    }
+
+    @FXML
+    protected void saveDownloadUrl() {
+        String url = txt_url.getText();
+        AppSettings.setDownloadUrl(url);
+
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("URL salvato");
+        alert.setHeaderText(null);
+        alert.setContentText("Il nuovo URL è stato salvato:\n" + url);
+        alert.showAndWait();
     }
 
     @FXML

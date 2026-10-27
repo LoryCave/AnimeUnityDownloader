@@ -5,6 +5,8 @@ import java.util.prefs.Preferences;
 public class AppSettings {
     private static final Preferences prefs = Preferences.userNodeForPackage(AppSettings.class);
     private static final String KEY_DOWNLOAD_DIR = "downloadDir";
+    private static final String KEY_DOWNLOAD_URL = "downloadUrl";
+    private static final String DEFAULT_DOWNLOAD_URL = "https://www.animeunity.to";
     private static final String KEY_DIVIDED = "divided";
 
     private AppSettings() {}
@@ -13,9 +15,18 @@ public class AppSettings {
         return prefs.get(KEY_DOWNLOAD_DIR, null);
     }
 
+    public static String getDownloadUrl() {
+        return prefs.get(KEY_DOWNLOAD_URL, DEFAULT_DOWNLOAD_URL);
+    }
+
     public static void setDownloadDir(String path) {
         if (path != null) prefs.put(KEY_DOWNLOAD_DIR, path);
         else prefs.remove(KEY_DOWNLOAD_DIR);
+    }
+
+    public static void setDownloadUrl(String url) {
+        if (url != null) prefs.put(KEY_DOWNLOAD_URL, url);
+        else prefs.remove(KEY_DOWNLOAD_URL);
     }
 
     public static boolean isDivided() {

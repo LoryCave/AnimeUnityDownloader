@@ -35,6 +35,10 @@ public class Scraper {
         this.dividedFolders = divided;
     }
 
+    private String getBaseUrl() {
+        return AppSettings.getDownloadUrl().replaceFirst("/+$", "");
+    }
+
     public interface DownloadCallback {
         void onEpisodeStart(int current, int total, String filename);
         void onProgress(long downloaded, long totalBytes);
@@ -42,7 +46,7 @@ public class Scraper {
     }
 
     public List<Record> searchAnime(String key) {
-        String baseurl = "https://www.animeunity.so/archivio?title=";
+        String baseurl = getBaseUrl() + "/archivio?title=";
 
         try {
             Connection req = Jsoup.connect(baseurl+ key);
@@ -58,7 +62,7 @@ public class Scraper {
     }
 
     public List<Episode> getEpisodes(String anime) {
-        String baseurl = "https://www.animeunity.so/anime/"+ anime;
+        String baseurl = getBaseUrl() + "/anime/" + anime;
 
         try {
             Connection req = Jsoup.connect(baseurl);
@@ -80,7 +84,7 @@ public class Scraper {
 
     @SuppressWarnings("deprecation")
     public void downloadAnime(String anime, List<Episode> episodes, DownloadCallback callback, BooleanSupplier isCancelled) {
-        String baseurl = "https://www.animeunity.so/anime/"+ anime;
+        String baseurl = getBaseUrl() + "/anime/" + anime;
 
         File baseDir = downloadDir != null ? downloadDir : new File(".");
         File animeFolder = dividedFolders ? new File(baseDir, anime) : baseDir;
