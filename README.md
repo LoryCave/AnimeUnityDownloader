@@ -54,4 +54,4 @@ Per domande o segnalazioni di bug apri un issue nel repository.
 ---
 
 **Versione**: 1.0.1
-**Ultimo aggiornamento**: 2026-07-02
+**Ultimo aggiornamento**: 2026-10-27
